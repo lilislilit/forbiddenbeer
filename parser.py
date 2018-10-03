@@ -20,8 +20,15 @@ for bear in soup.find_all('div', {'class' : 'beer-info '}):
         print(details_numbers)
         abv = details_numbers[0].strip()
         ibu = details_numbers[1].strip()
-        beer_dict['ABV'] = float(abv)
-        beer_dict['IBU'] = int(ibu)
+        if abv == 'N/A':
+            beer_dict['ABV'] = None
+        else:
+            beer_dict['ABV'] = float(abv)
+        if ibu == 'N/A':
+            beer_dict['IBU'] = None
+        else:
+            beer_dict['IBU'] = int(ibu)
+
     bearlist.append(beer_dict)
     
 print(bearlist)
